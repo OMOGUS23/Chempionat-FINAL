@@ -254,9 +254,9 @@
     }
     ```
     3. Запустить распознавание
-       ```
-       roslaunch robohead voice_recognition.launch
-       ```
+     ```
+     roslaunch robohead voice_recognition.launch
+     ```
       
     
      
