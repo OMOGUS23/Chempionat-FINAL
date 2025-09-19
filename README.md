@@ -199,7 +199,7 @@
      Проверить:
      ```
      rostopic echo /wake_word_detected
-     ```
+     
     
      
      
