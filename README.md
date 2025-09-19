@@ -199,6 +199,62 @@
      ```
      rostopic echo /wake_word_detected
      ```
+     ## МОДУЛЬ Б2
+   1. Добавление команды в список голосовых фраз(файл config/commands.json)
+      ```
+      {
+        "commands": {
+         "покажи глазки": "show_eyes",
+         "поздоровайся": "say_hello",
+         "покажи уши": "show_ears",
+         "покажи левое ухо": "show_left_ear",
+         "покажи правое ухо": "show_right_ear"
+          }
+        }
+      ```
+   2.В коде узла (например, src/voice_commands.cpp) нужно подписаться на топик распознавания и добавить новую реакцию:
+     ```
+     #include <ros/ros.h>
+     #include <std_msgs/String.h>
+
+void commandCallback(const std_msgs::String::ConstPtr& msg) {
+    std::string cmd = msg->data;
+
+    if (cmd == "show_eyes") {
+        ROS_INFO("Команда: покажи глазки");
+
+        // 1. Показать изображение на экране
+        system("rosrun robohead display_image.py images/eyes.png &");
+
+        // 2. Проиграть фразу через динамик
+        system("espeak -v ru \"Вот мои глазки\" &");
+
+        // 3. Задействовать серво (шея и уши)
+        system("rosrun robohead move_servos.py --neck --ears --time 10");
+
+        // 4. Длительность < 15 секунд
+        ros::Duration(10.0).sleep();
+    }
+
+    else if (cmd == "say_hello") {
+        ROS_INFO("Команда: поздоровайся");
+        // существующий код
+    }
+
+    // другие команды...
+}
+
+int main(int argc, char** argv) {
+    ros::init(argc, argv, "voice_command_handler");
+    ros::NodeHandle nh;
+
+    ros::Subscriber sub = nh.subscribe("/voice_commands", 10, commandCallback);
+
+    ros::spin();
+    return 0;
+}
+    ```
+      
     
      
      
