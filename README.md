@@ -253,6 +253,10 @@
         return 0;
     }
     ```
+    3. Запустить распознавание
+       ```
+       roslaunch robohead voice_recognition.launch
+       ```
       
     
      
