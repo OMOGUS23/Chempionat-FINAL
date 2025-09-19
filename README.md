@@ -195,6 +195,6 @@
      Перезапустить модуль распознавания:
      ```
      roslaunch robohead voice_recognition.launch
-     ```
+     
 
       
