@@ -1,6 +1,6 @@
 # Модули
 # ${\color{}Экспуатация ~Сервисных ~Ботов}$
-## Модуль А
+## МОДУЛЬ А
 ### Подключение робота
 1. Настройка wifi
     - Переходим в директорию на CD карте
@@ -167,3 +167,13 @@
         ```
         rostopic echo /arduino_connect_tester
         ```
+    ## МОДУЛЬ Б
+   1. Проверка программного обеспечения
+      -проверить, что пакет установлен
+      ```
+      cd ~/catkin_ws/src
+      git clone https://github.com/NikolayIvanovWS/robohead.git
+      cd ~/catkin_ws
+      catkin_make
+      source devel/setup.bash
+      ```
