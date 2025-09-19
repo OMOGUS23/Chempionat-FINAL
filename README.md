@@ -177,3 +177,8 @@
       catkin_make
       source devel/setup.bash
       ```
+      -убедится, что пакет запускается
+      ```
+      roslaunch robohead voice_recognition.launch
+      ```
+      
