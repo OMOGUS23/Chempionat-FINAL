@@ -200,7 +200,7 @@
      rostopic echo /wake_word_detected
      ```
      ## МОДУЛЬ Б2
-   1. Добавление команды в список голосовых фраз(файл config/commands.json)
+   1.Добавление команды в список голосовых фраз(файл config/commands.json)
       ```
       {
         "commands": {
@@ -253,7 +253,7 @@
         return 0;
     }
     ```
-    3. Запустить распознавание
+   3.Запустить распознавание
      ```
      roslaunch robohead voice_recognition.launch
      ```
