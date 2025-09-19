@@ -195,6 +195,13 @@
      Перезапустить модуль распознавания:
      ```
      roslaunch robohead voice_recognition.launch
+     ```
+     Проверить:
+     ```
+     rostopic echo /wake_word_detected
+     ```
+    
+     
      
 
       
