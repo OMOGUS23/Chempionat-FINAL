@@ -169,7 +169,7 @@
         ```
     ## МОДУЛЬ Б
    1. Проверка программного обеспечения
-      -проверить, что пакет установлен
+     -проверить, что пакет установлен
       ```
       cd ~/catkin_ws/src
       git clone https://github.com/NikolayIvanovWS/robohead.git
