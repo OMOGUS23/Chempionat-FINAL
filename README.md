@@ -217,10 +217,10 @@
      #include <ros/ros.h>
      #include <std_msgs/String.h>
 
-void commandCallback(const std_msgs::String::ConstPtr& msg) {
-    std::string cmd = msg->data;
+        void commandCallback(const std_msgs::String::ConstPtr& msg) {
+        std::string cmd = msg->data;
 
-    if (cmd == "show_eyes") {
+      if (cmd == "show_eyes") {
         ROS_INFO("Команда: покажи глазки");
 
         // 1. Показать изображение на экране
