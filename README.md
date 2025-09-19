@@ -244,14 +244,14 @@
     // другие команды...
 }
 
-int main(int argc, char** argv) {
-    ros::init(argc, argv, "voice_command_handler");
-    ros::NodeHandle nh;
+    int main(int argc, char** argv) {
+        ros::init(argc, argv, "voice_command_handler");
+        ros::NodeHandle nh;
 
-    ros::Subscriber sub = nh.subscribe("/voice_commands", 10, commandCallback);
+        ros::Subscriber sub = nh.subscribe("/voice_commands", 10, commandCallback);
 
-    ros::spin();
-    return 0;
+        ros::spin();
+        return 0;
 }
     ```
       
