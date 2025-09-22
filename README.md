@@ -257,8 +257,54 @@
      ```
      roslaunch robohead voice_recognition.launch
      ```
-      
+      ## МОДУЛЬ Б3
+   1. Сначала пишем скрипт для подсчета и вывода команды "Осмотрись":
+      ```
+      #!/usr/bin/env python 3
+      import sys
+
+      if len(sys.argv) != 2:
+          print("Использование: python count_osm.py log.txt")
+          sys.exit(1)
+
+loggile = sys.argv[1]
+count = 0
+
+with open(logfile, "r", encoding="utf-8") as f:
+    for line in f:
+        if "Команда: осмотрись" in line.lower():
+            count += 1
+
+print(f"Количество вызовов команды 'осмотрись': {count}")
+    ```
+2. Теперь напишем скрипт для последовательности посещения комнат:
+    ```
+    #!/usr/bin/env python 3
+    import sys
     
+    if len(sys.argv) != 2:
+        print("Использование: python rooms_seq.py log.txt")
+        sys.exit(1)
+
+logfile = sys.argv[1]
+rooms = []
+
+with open(logfile, "r", encoding="utf-8") as f:
+    for line in f:
+        if "переход в комнату:" in line.lower():
+            room = line.strip().split(":")[-1].strip()
+            rooms.append(room)
+
+print("Последовательность посещение комнат:")
+print(" → ".join(rooms))
+   ``` 
+3. Последовательность запуска:
+    1)Запусти скрипт для подсчета вызовов "Осмотрись":
+    На экране появится число, например: "Количество вызовов команды 'осмотрись': 3"
+    2)Запусти скрипт для анализа посещения комнат:
+    python3 rooms_seq.py logs.txt
+    
+        
      
      
 
