@@ -168,37 +168,38 @@
         rostopic echo /arduino_connect_tester
         ```
     ## МОДУЛЬ Б
-   1. Проверка программного обеспечения
-     -проверить, что пакет установлен
-      ```
-      cd ~/catkin_ws/src
-      git clone https://github.com/NikolayIvanovWS/robohead.git
-      cd ~/catkin_ws
-      catkin_make
-      source devel/setup.bash
-      ```
-      убедится, что пакет запускается
-      ```
-      roslaunch robohead voice_recognition.launch
-      ```
-      Найти конфигурацию модуля распознавания речи (обычно в config/keywords.json или config/settings.yaml).
-      Добавить индивидуальную фразу, выданную экспертом.
-      Например, если ключевая фраза = "Привет, Брейн":
-      ```
-      {
-       "wake_words": [
-        "Привет, Брейн"
-       ]
-      }
-     Сохранить изменения.
-     Перезапустить модуль распознавания:
+   1.Остановить процесс, чтобы не было сбоев в работе
      ```
-     roslaunch robohead voice_recognition.launch
+     sudo systemctl stop robohead.service
      ```
-     Проверить:
+   2.Открыть файл со списком фраз
      ```
-     rostopic echo /wake_word_detected
+     robohead_ws/src/robohead/robohead_controller/config/voice_recognizer_pocketsphinx/kwslist.txt
      ```
+   3. Меняем
+      ```
+      эйголова/1e-40/ - меняем только фразу(цифры не трогаем)
+      ```
+   4.  открываем файл
+      ```
+      robohead_ws/src/robohead/robohead_controller/config/voice_recognizer_pocketsphinx/dictionary.txt
+      ```
+   5. Вместо текущей ключевой фразы впишите новую ключевую фразу:
+      ```
+      # dictionary.txt
+    эйголова - меняем на "Привет, Сири"
+    покажи
+    уши
+    левое
+    правое
+    поздоровайся
+    сделай
+    фото
+    следи
+    за
+    шариком
+    ```
+      
      ## МОДУЛЬ Б2
    1.Добавление команды в список голосовых фраз(файл config/commands.json)
       ```
