@@ -176,29 +176,34 @@
      ```
      robohead_ws/src/robohead/robohead_controller/config/voice_recognizer_pocketsphinx/kwslist.txt
      ```
-   3. Меняем
+   3.Меняем
       ```
       эйголова/1e-40/ - меняем только фразу(цифры не трогаем)
       ```
-   4.  открываем файл
+   4.открываем файл
       ```
       robohead_ws/src/robohead/robohead_controller/config/voice_recognizer_pocketsphinx/dictionary.txt
       ```
    5. Вместо текущей ключевой фразы впишите новую ключевую фразу:
       ```
       # dictionary.txt
-    эйголова - меняем на "Привет, Сири"
-    покажи
-    уши
-    левое
-    правое
-    поздоровайся
-    сделай
-    фото
-    следи
-    за
-    шариком
-    ```
+        эйголова - меняем на "Привет, Сири"
+        покажи
+        уши
+        левое
+        правое
+        поздоровайся
+        сделай
+        фото
+        следи
+        за
+        шариком
+6. Сгенерировать файл с фонетическими записями командой:
+   ```
+       ~/robohead_ws/src/ru4sphinx/text2dict/dict2transcript.pl \
+      ~/robohead_ws/src/robohead/robohead_controller/config/voice_recognizer_pocketsphinx/dictionary.txt \
+      ~/robohead_ws/src/robohead/robohead_controller/config/voice_recognizer_pocketsphinx/dictionary.dict
+   ``` 
       
      ## МОДУЛЬ Б2
    1.Добавление команды в список голосовых фраз(файл config/commands.json)
