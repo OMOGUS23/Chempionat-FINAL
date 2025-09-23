@@ -184,7 +184,7 @@
       ```
       robohead_ws/src/robohead/robohead_controller/config/voice_recognizer_pocketsphinx/dictionary.txt
       ```
-   5. Вместо текущей ключевой фразы впишите новую ключевую фразу:
+   5.Вместо текущей ключевой фразы впишите новую ключевую фразу:
       ```
       # dictionary.txt
         эйголова - меняем на "Привет, Сири"
@@ -234,7 +234,12 @@
         <command_3> = сделай фото ;
         <command_4> = следи за шариком ;
         <command_5> = улыбнись ;
-```
+        ```
+   3.сконвертируем
+        ```
+        ~/robohead_ws/src/ru4sphinx/text2dict/dict2transcript.pl   ~/robohead_ws/src/robohead/robohead_controller/config/voice_recognizer_pocketsphinx/dictionary.txt                                                      ~/robohead_ws/src/robohead/robohead_controller/config/voice_recognizer_pocketsphinx/dictionary.dict
+        ```
+
       ## МОДУЛЬ Б3
    1. Сначала пишем скрипт для подсчета и вывода команды "Осмотрись":
       ```
