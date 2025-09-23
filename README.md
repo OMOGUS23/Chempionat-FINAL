@@ -206,63 +206,35 @@
    ``` 
       
      ## МОДУЛЬ Б2
-   1.Добавление команды в список голосовых фраз(файл config/commands.json)
+   1.Формальная грамматика определяет множество команд, которые может распознавать речевой модуль. Откройте файл:
       ```
-      {
-        "commands": {
-         "покажи глазки": "show_eyes",
-         "поздоровайся": "say_hello",
-         "покажи уши": "show_ears",
-         "покажи левое ухо": "show_left_ear",
-         "покажи правое ухо": "show_right_ear"
-          }
-        }
+      nano ~robohead_ws/src/robohead/robohead_controller/config/voice_recognizer_pocketsphinx/gram.txt
       ```
-   2.В коде узла (например, src/voice_commands.cpp) нужно подписаться на топик распознавания и добавить новую реакцию:
-     ```
-     #include <ros/ros.h>
-     #include <std_msgs/String.h>
+   2.Чтобы добавить новую команду <command_5> = улыбнись, нужно:
 
-        void commandCallback(const std_msgs::String::ConstPtr& msg) {
-        std::string cmd = msg->data;
+     1)Расширить список команд, включив <command_5> в правило <command>.
 
-      if (cmd == "show_eyes") {
-        ROS_INFO("Команда: покажи глазки");
+     2)Добавить определение <command_5>.
+       ```
+       #JSGF V1.0;
 
-        // 1. Показать изображение на экране
-        system("rosrun robohead display_image.py images/eyes.png &");
+        grammar robohead_cmds;
 
-        // 2. Проиграть фразу через динамик
-        system("espeak -v ru \"Вот мои глазки\" &");
+        public <commands> = <command> ;
 
-        // 3. Задействовать серво (шея и уши)
-        system("rosrun robohead move_servos.py --neck --ears --time 10");
+        <command> = 
+            <command_1> 
+          | <command_2> 
+          | <command_3> 
+          | <command_4> 
+          | <command_5> ;
 
-        // 4. Длительность < 15 секунд
-        ros::Duration(10.0).sleep();
-    }
-
-    else if (cmd == "say_hello") {
-        ROS_INFO("Команда: поздоровайся");
-        // существующий код
-    }
-
-    // другие команды...
-
-    int main(int argc, char** argv) {
-        ros::init(argc, argv, "voice_command_handler");
-        ros::NodeHandle nh;
-
-        ros::Subscriber sub = nh.subscribe("/voice_commands", 10, commandCallback);
-
-        ros::spin();
-        return 0;
-    }
-    ```
-   3.Запустить распознавание
-     ```
-     roslaunch robohead voice_recognition.launch
-     ```
+        <command_1> = покажи ( уши | левое ухо | правое ухо ) ;
+        <command_2> = поздоровайся ;
+        <command_3> = сделай фото ;
+        <command_4> = следи за шариком ;
+        <command_5> = улыбнись ;
+```
       ## МОДУЛЬ Б3
    1. Сначала пишем скрипт для подсчета и вывода команды "Осмотрись":
       ```
